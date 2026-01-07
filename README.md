@@ -1,2 +1,2 @@
-# Example
-An example greeter plugin
+# NPC Regen Timer
+Displays overhead timer for NPC health regeneration.
