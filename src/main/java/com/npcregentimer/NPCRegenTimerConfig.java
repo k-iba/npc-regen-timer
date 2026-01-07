@@ -8,12 +8,36 @@ import net.runelite.client.config.ConfigItem;
 public interface NPCRegenTimerConfig extends Config
 {
 	@ConfigItem(
-		keyName = "greeting",
-		name = "Welcome Greeting",
-		description = "The message to show to the user when they login"
+			keyName = "regenIntervalSeconds",
+			name = "Regen interval (seconds)",
+			description = "Countdown duration started/reset when the NPC takes damage."
 	)
-	default String greeting()
+	default int regenIntervalSeconds()
 	{
-		return "Hello";
+		return 60;
+	}
+
+	@ConfigItem(
+			keyName = "deadPersistTicks",
+			name = "Persist after death (ticks)",
+			description = "How long to keep a paused timer around while the NPC is dead (so it can resume on respawn)."
+	)
+	default int deadPersistTicks()
+	{
+		return 2000; // ~20 minutes
+	}
+	default boolean showOnlyWhenActive()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "staleCleanupTicks",
+			name = "Cleanup after (ticks)",
+			description = "Remove timers not seen for this many game ticks (to prevent memory growth)."
+	)
+	default int staleCleanupTicks()
+	{
+		return 400; // ~4 minutes
 	}
 }
